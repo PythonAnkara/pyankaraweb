@@ -1,6 +1,6 @@
-# Python Türkiye Web Sitesi
+# Python Ankara Web Sitesi
 
-[Python Türkiye](http://pythonturkiye.com/)
+[Python Ankara](http://pyankara.org/)
 
 
 ## PostgreSQL kurulumu ve Django ile kullanımı
@@ -39,7 +39,7 @@ Oluşturduğumuz kullanıcımıza yetki vereceğiz.
     `pip install django psycopg2`  
     3. **Projede düzenlemeler yapalım(Bu kısmı ben push yapacağım)**  
     `cd`  
-    `cd python-turkiye-web`  
+    `cd python-ankara-web`  
     `cd ptweb`  
     `vim ptweb/settings.py`  
     aşağıdaki satırları bulup comment haline getirelim:
@@ -89,6 +89,7 @@ DATABASES = {
 ```
 
 ## Uygulama parametreleri
+settings.py dosyasının en altına kendiniz için oluşturduğunuz aşağıdaki parametreleri ekleyin.
 ```python
 FACEBOOK_ACCESS_TOKEN = "{FACEBOOK_ACCESS_TOKEN}"
 YOUTUBE_API_KEY = "{YOUTUBE_API_KEY}"

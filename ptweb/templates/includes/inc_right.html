@@ -1,0 +1,128 @@
+{% load main %}
+            <aside class='span4'>
+                <div class='widget'>
+                    <div class='inner inner-sides'>
+                        <div class="social-counter">
+                        <div class='counter first-child'>
+                            <a href="http://www.facebook.com/pythonankara" class='facebook'><div class='inner-counter'><i></i> {{ r_facebook_like_count }}</div></a>
+                        </div>
+                        <div class='counter'>
+                            <a href="#" class='twitter'><div class='inner-counter'><i></i> 64</div></a>
+                        </div>
+                        <div class='counter last-child'>
+                            <a href="#" class='rss'><div class='inner-counter'><i></i> 128</div></a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget">
+                    <div class='inner'>
+                        <h3>Bizi Facebook da Takip Edin</h3>
+                        <div class="follow-us">
+                            <div class="fb-page" data-href="https://www.facebook.com/pythonankara" data-width="100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget">
+                    <div class='inner'>
+                    <div class="tabbable"> <!-- Only required for left/right tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class='first-child active'>
+                                <a data-toggle="tab" href="#tab1"><div class='inner-tab'>Populer Yazılar</div></a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#tab2"><div class='inner-tab'>Son Yazılar</div></a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#tab3"><div class='inner-tab'>Yorumlar</div></a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab1" class="tab-pane active">
+                                <ul>
+                                    {% for pp in r_pupular_posts %}
+                                        <li>
+                                            <a title="" href="/{{pp.post__slug}}">
+                                                <figure>
+                                                    <img style="width: 42px;height: 42px;" src='/media/{{pp.post__thumbn}}' alt='{{pp.post__title}}' />
+                                                </figure>
+                                                <p>{{pp.post__title}} <br> <span> {{pp.post__pub_datetime}} </span></p>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div id="tab2" class="tab-pane">
+                                <ul>
+                                    {% for rp in r_recent_posts %}
+                                        <li>
+                                            <a title="" href="/{{rp.slug}}">
+                                                <figure>
+                                                    <img style="width: 42px;height: 42px;" src='/media/{{rp.thumbn}}' alt='{{rp.title}}' />
+                                                </figure>
+                                                <p>{{rp.title}} <br> <span> {{rp.pub_datetime}} </span></p>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div id="tab3" class="tab-pane">
+                                <ul>
+                                  {% for rc in r_recent_comments %}
+                                    <li>
+                                        <a title="" href="/{{rc.post.slug}}">
+                                            <figure>
+                                                <img src='{{rc.email|avatargetir:42}}' alt='' />
+                                            </figure>
+                                            <p>{{rc.message|textsplit:10}} <br> <span> {{rc.pub_datetime}} ({{rc.name}})</span></p>
+                                        </a>
+                                    </li>
+                                  {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class='widget'>
+                    <div class='inner'>
+                        <h3>Resimler</h3>
+                        <div class='photo-list'>
+                            {% for rsm in r_pictures %}
+                                <div class='photo'>
+                                    <a href="{{rsm.source}}" rel='prettyPhoto[news-in-pictures]' data-toggle="tooltip" title="{{ rsm.name }}">
+                                        <img src="{{rsm.source}}" alt="Python Türkiye Resimler" />
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class='widget'>
+                    <div class='inner'>
+                        <h3>En Yeni Video</h3>
+                        <div class="featured-video">
+                            <iframe width="560" height="315" src="http://www.youtube.com/embed/{{r_yeni_video.videoid}}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class='widget'>
+                    <div class='inner'>
+                        <h3>Populer Yazılar</h3>
+                        <div class='list'>
+                            <ul>
+                                {% for pp in r_pupular_posts %}
+                                <li>
+                                    <a title="" href="/{{pp.post__slug}}">
+                                        <figure>
+                                            <img style="width: 42px;height: 42px;" src='/media/{{pp.post__thumbn}}' alt='{{pp.post__title}}' />
+                                        </figure>
+                                        <p>{{pp.post__title}} <br> <span> {{pp.post__pub_datetime}} </span></p>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </aside>

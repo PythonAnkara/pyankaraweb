@@ -1,0 +1,49 @@
+{% include "includes/inc_banner.html" %}
+{% load main %}
+{% load range %}
+<div id="main">
+    <div class='container'>
+        <div class='row'>
+            <div class='content span8 blog-style'>
+                {% for post in posts %}
+                    <article>
+                        <div class='inner'>
+                            <figure>
+                                <a href="/{{post.slug}}">
+                                    <img style="width: 260px; height: 186px;" src="/media/{{ post.thumbn }}" alt="" />
+                                </a>
+                            </figure>
+                            <div class='text'>
+                                <div class='inner-border'>
+                                    <div class="title"><a href='/{{post.slug}}'>{{ post.title }}</a></div>
+                                    <div class='description'>
+                                        <div class='date'>{{post.id|getcommentcounts}} Yorum, {{ post.pub_datetime }}, by {{ post.author.first_name }} {{ post.author.last_name }}</div>
+                                        <div class='excerpt'>
+                                            <p>
+                                               {{ post.content | description:30 }} ...<a href=""> Devamı...</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+
+                <div class="pagination">
+                    <ul>
+                      {% if oncevarmi %}<li><a href="?sf={{mon}}">&laquo;</a></li>{%endif%}
+                      {% range mbas:mson as rng %}
+                        <li {% if sf == rng %}class='active'{%endif%} ><a href="?sf={{rng}}">{{rng}}</a></li>
+                      {% endrange %}
+                      {% if sonravarmi %}<li><a href="?sf={{msn}}">&raquo;</a></li>{%endif%}
+                    </ul>
+                </div>
+
+            </div>
+
+            {% include "includes/inc_right.html" %}
+        </div>
+    </div>
+</div>
+{% include "includes/inc_footer.html" %}

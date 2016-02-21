@@ -1,0 +1,133 @@
+{% include "includes/inc_banner.html" %}
+{% load main %}
+<div id="main">
+    <div class='container'>
+        <div class='row'>
+            <div class='content span8 blog-page'>
+                <article>
+                    <h1 class='title'>{{ postdata.title }}</h1>
+                    <!--<figure>
+                        <a href="/static/img/blog-image.jpg" rel="prettyPhoto">
+                            <img src="/static/img/blog-image.jpg" alt="Winter in New York">
+                        </a>
+                    </figure>-->
+                    <div class='blog-content'>
+                        <div class='info'>
+                            <a href="#">{{comments|counter}} Yorum</a>,
+                            <span class='date'>{{ postdata.pub_datetime }}</span>, by
+                            <a href="#">{{ postdata.author.first_name }} {{ postdata.author.last_name }}</a>, in
+                            <a href="#" class='dark'>{{ postdata.categories.title }}</a>
+                        </div>
+                        {{ postdata.content | safe }}
+                        <div class="tag-container">
+                            <div class='tag-title'>Tags: </div>
+                            {% for i in postdata.tags.all %}
+                                <a class='tag' href="/tags/{{i.id}}/{{i.slug}}">{{ i.title }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class='blog-bottom'>
+                        <div class='share-title'>Share</div>
+                        <div class='share-content'>
+                            <!-- AddThis Button BEGIN -->
+                            <div class="addthis_toolbox addthis_default_style ">
+                            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                            <a class="addthis_button_tweet"></a>
+                            <a class="addthis_button_pinterest_pinit"></a>
+                            <a class="addthis_counter addthis_pill_style"></a>
+                            </div>
+                            <script type="text/javascript" src="../../../s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5133cbfc3c9054b8"></script>
+                            <!-- AddThis Button END -->
+                        </div>
+                    </div>
+                </article>
+                <div class='row'>
+                    <div class='span8 author-box'>
+                        <div class='box-title'>
+                            <h2>Yazar Hakkında </h2>
+                            <div class='title-line'></div>
+                        </div>
+                        <div class='author'>
+                            <figure>
+                                <img src="{{ postdata.author.email|avatargetir }}" alt="">
+                            </figure>
+                            <div class='author-links'>
+                                <a href="https://twitter.com/{{ aboutauthor.0.twitter }}" class='twitter author-social'>Twitter</a>
+                                <a href="https://facebook.com/{{ aboutauthor.0.facebook }}" class='facebook author-social'>Facebook</a>
+                                <a href="https://google.com/{{ aboutauthor.0.google }}" class='googleplus author-social'>Googleplus</a>
+                            </div>
+                            <div class='description'>
+                                <span class='name'>{{ aboutauthor.0.user.first_name }} {{ aboutauthor.0.user.last_name }}</span> {{ aboutauthor.0.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='related-news span8'>
+                        <div class='inner-box'>
+                            <h1 class='title'>Diğer Yazılar</h1>
+                            {%for op in otherposts%}
+                            <div class="column">
+                                <div class='inner'>
+                                    <a href="/{{op.slug}}">
+                                        <figure>
+                                            <img style="width:233px;height:89px;" src="/media/{{op.thumbn}}" alt="">
+                                        </figure>
+                                        <div class='title'>{{op.title}}</div>
+                                        <div class='date'>{{op.pub_datetime}}</div>
+                                    </a>
+                                </div>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+                <div class='comments row'>
+                    <div class='span8'>
+                        <div class='box-title'>
+                            <h2>{{comments|counter}} Yorum </h2>
+                            <div class='title-line'></div>
+                        </div>
+                        {% for cm in comments %}
+                        <div class="top-comment comment">
+                            <div class="left">
+                                <figure>
+                                    <img alt="" src="{{ cm.email|avatargetir:63 }}">
+                                </figure>
+                                <div class="border"></div>
+                            </div>
+                            <div class="right">
+                                <div class='text'>
+                                    <div class='name'><a href="#">{{cm.name}}</a></div>
+                                    <span class="date">{{cm.pub_datetime}}</span>
+                                    <p>{{cm.message}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='span8'>
+                        <div class='box-title'>
+                            <h2>Yorumunuzu Paylaşırsanız seviniriz.</h2>
+                            <span class='sub-title'>Girdiğiniz e-posta adresi kimseyle paylaşılmaz. Sadece kimlik olarak kullanılır.</span>
+                        </div>
+                        <div class='comments-form'>
+                            <form action="/messagepost/{{postid}}/{{slug}}" method="post">{% csrf_token %}
+                                <input type="text" name='name' placeholder="İsminiz ... " class='span4 comment-input'/>
+                                <input type="email" name='email' placeholder="Mail adresiniz ... " class='span4 comment-input' />
+                                <textarea name="message" rows="10" class='span8 comment-input' placeholder="Mesajınız ... "></textarea>
+                                <input type="submit" name="postComment" value='Gönder' class='btn btn-custom btn-red btn-medium btn-large-text' />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            {% include "includes/inc_right.html" %}
+        </div>
+    </div>
+</div>
+{% include "includes/inc_footer.html" %}

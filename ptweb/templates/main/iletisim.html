@@ -1,0 +1,43 @@
+{% include "includes/inc_banner.html" %}
+<div id="main">
+    <div class='container'>
+        <div class='row'>
+            <div class='content span8 blog-style'>
+                <div class='row'>
+                    <div class='span8 contact-page'>
+                        <div class='box-title'>
+                            <h2>Bize Ulaşın</h2>
+                            <div class='title-line'></div>
+                        </div>
+                        <div class="contact-form">
+                            <p>Hakkımızda öğrenmek istediğiniz ne varsa sorabilir bizde size dönüş yapabiliriz. </p>
+
+                            <div class="alert alert-error">
+                                <div class="inner-alert">
+                                    <span class="alert-title">HATA:</span> Form gönderilemedi lütfen tekrar deneyiniz.
+                                </div>
+                            </div>
+
+                            <div class="alert alert-success">
+                            <div class="inner-alert">
+                                <span class="alert-title">Başarılı:</span> Mesajınız alınmıştır. En kısa süre içerisinde size dönüş yapacağız.
+                            </div>
+                        </div>
+
+                            <form action="#">
+                                <input id="name" type="text" name='name' placeholder="İsminiz ... " class='span5 contact-input'/>
+                                <input id="email" type="email" name='email' placeholder="Mail adesiniz ... " class='span5 contact-input' />
+                                <textarea id="message" name="message" rows="10" class='span7 contact-input' placeholder="Mesajınız ... "></textarea>
+                                <input id="send_message" type="submit" name="postComment" value='Mesaj Gönder' class='btn btn-custom btn-red btn-medium btn-large-text' />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            {% include "includes/inc_right.html" %}
+        </div>
+    </div>
+</div>
+{% include "includes/inc_footer.html" %}

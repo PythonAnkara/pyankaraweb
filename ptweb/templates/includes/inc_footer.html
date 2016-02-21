@@ -1,0 +1,57 @@
+{% include "includes/inc_underhead.html" %}
+{% load main%}
+<footer>
+    <div class='container'>
+        <div class='row'>
+            <div class='span4 footer-widget'>
+                <h3>Hakkında</h3>
+                <p>
+                    Dünyada hızlı şöhreti artan Python programlama dilinin ülkimizde
+                    tanınırlığını artırmak amacıyla gönüllü yazılımcıların bir araya
+                    geldiği, açık kaynağın tadını, paylaşımın keyfini ve üretmenin hazzını
+                    yaşayan ve yaşatmayı arzulayan topluluğun adıdır Python Ankara.
+                </p>
+            </div>
+            <div class='span4 footer-widget'>
+                <h3>SON RESİMLER</h3>
+                <div class='row flickr-gallery'>
+                  {% for rsm in f_pictures %}
+                    <div class='span1'>
+                        <a href="{{rsm.source}}" rel='prettyPhoto[flickr-gallery]' title='{{rsm.name}}'>
+                            <img src="{{rsm.source}}" alt="{{rsm.name}}">
+                        </a>
+                    </div>
+                  {% endfor %}
+                </div>
+            </div>
+            <div class='span4 footer-widget'>
+                <h3>SON TWEETLER (PFS)</h3>
+                {% for ftw in f_tweets %}
+                <div class='tweet {%if forloop.counter0 == 0%} first-child{% endif %}'>
+                    <span class="time">{{ ftw.created_at|datediffr }}</span> {{ftw.text}}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</footer>
+<div class='sub-footer'>
+    <div class='container'>
+        <div class='row'>
+            <div class='span9 copyright'>
+                Copyright &copy; Python Ankara - 2015. Developed by <a href="/yazarlar">Python Ankara Web Team</a>.
+            </div>
+            <div class='span3 social-links'>
+                <ul>
+                    <li><a href="#" class='facebook'>Facebook</a></li>
+                    <li><a href="#" class='twitter'>Twitter</a></li>
+                    <li><a href="#" class='pinterest'>Pinterest</a></li>
+                    <li><a href="#" class='googleplus'>Google+</a></li>
+                </ul>
+            </div>
+        </div>
+        <a href='#' class='back-to-top'>Scroll Top</a>
+    </div>
+</div>
+</body>
+</html>

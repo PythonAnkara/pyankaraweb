@@ -1,0 +1,153 @@
+{% load main %}
+{% include "includes/inc_banner.html" %}
+
+<div class='slider hidden-phone'>
+    <div class='container'>
+        <div class='row'>
+            <div class='inner'>
+
+                <div id="slider" class="span12">
+                    <ul class='slides'>
+                        {% for slide in slides %}
+                            <li>
+                            <div class='span12 single-slide no-margin'>
+                                <figure>
+                                  <a href="{{ slide.href }}">
+                                    <img style="width:1170px; height: 448px;" src="/media/{{ slide.image }}" alt="{{ slide.title }}" />
+                                  </a>
+                                </figure>
+                                <div class='slider-caption'>
+                                    <div class='span6 no-margin'>
+                                        <div class='title'><a href="{{ slide.href }}">{{ slide.title }}</a></div>
+                                    </div>
+                                    <br />
+                                    <div class='description span5'>{{ slide.description }}</div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class='span12 slider-navigation'>
+                    {% for slide1 in slides %}
+                        <div class='navigation-item first-child {%if forloop.counter == 1%} active {% endif %}' rel='{{ forloop.counter }}'>
+                            <span>{{ slide1.title }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="main">
+    <div class='container'>
+        <div class='row'>
+            <div class='content span8'>
+                <div class="row">
+                    <div class='span8 article-showcase hidden-phone'>
+                        <div class='inner-border'>
+                            <div class='half'>
+                              {% if big_post %}
+                                <div class='big-article active' rel='1'>
+                                    <div class='title'>
+                                        <span><a href="/{{ big_post.slug}}">{{ big_post.title }}</a></span>
+                                    </div>
+                                    <figure>
+                                        <img src="/media/{{ big_post.thumbn }}" alt="" />
+                                    </figure>
+                                    <div class='main-text'>
+                                        <div class='inner'>
+                                            <span class='article-info'>0 yorum, {{ big_post.pub_datetime }}, {{ big_post.first_name }} {{ big_post.last_name }}</span>
+                                        </div>
+                                        <p>{{ big_post.content|description:50 }}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class='half'>
+                                <div class='inner-left-border'>
+                                  {% for post in events %}
+                                    <article class='first-child active' rel='1'>
+                                        <figure>
+                                          <a href="/{{post.slug}}">
+                                            <img src="/media/{{ post.thumbn }}" alt="" />
+                                          </a>
+                                        </figure>
+                                        <div class='text'>
+                                            <a href="/{{post.slug}}"><h3>{{ post.title }}</h3></a>
+                                            <span class='info'>{{post.pub_datetime}}, {{post.id|getcommentcounts}} Yorum</span>
+                                        </div>
+                                    </article>
+                                  {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='span4 article-box'>
+                        <div class='box-title'>
+                            <h2>Son Haberler </h2>
+                            <div class='title-line'></div>
+                        </div>
+                        {% for hb in news %}
+                            <article class='first-child'>
+                                <figure>
+                                  <a href="/{{ hb.slug}}">
+                                    <img src="/media/{{ hb.thumbn }}" alt="" />
+                                  </a>
+                                </figure>
+                                <div class='text'>
+                                    <h3><a href="/{{ hb.slug}}">{{ hb.title }}</a></h3>
+                                    <span class='info'>{{ hb.pub_datetime }}, 0 Yorum</span>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                    {% for i in subposts %}
+                    <div class='span4 article-box'>
+                        <div class='box-title'>
+                            <h2>{{i.baslik}}</h2>
+                            <div class='title-line'></div>
+                        </div>
+                        <div class='articles-slider' id="{%if forloop.counter == 1 %}entertainment{%else%}business{%endif%}-slider">
+                            <ul class='slides'>
+                               <li>
+                                       <div class='main-article'>
+                                           <div class='title'>
+                                               <span><a href="/{{ i.icerik.0.slug}}">{{i.icerik.0.title}}</a></span>
+                                           </div>
+                                           <figure>
+                                             <a href="/{{i.icerik.0.slug}}">
+                                               <img style="width:370px; height:178px" src="/media/{{ i.icerik.0.thumbn }}" alt="" />
+                                             </a>
+                                           </figure>
+                                           <div class='main-text'>
+                                                <div class='inner'>
+                                                    <span class='article-info'>0 Yorum, {{ i.icerik.0.pub_datetime }}, {{ i.icerik.0.author.first_name }} {{ i.icerik.0.author.last_name }}</span>
+                                                    <p>{{ i.icerik.0.content|description:40 }} <a href='/{{i.icerik.0.slug}}'>Devamı...</a></p>
+                                                </div>
+                                           </div>
+                                       </div>
+                                       <article>
+                                           <figure>
+                                             <a href="/{{i.icerik.1.slug}}">
+                                               <img style="width:96px; height:53px" src="/media/{{ i.icerik.1.thumbn }}" alt="" />
+                                             </a>
+                                           </figure>
+                                           <div class='text'>
+                                               <h3><a href="/{{i.icerik.1.slug}}">{{i.icerik.1.title}}</a></h3>
+                                               <span class='info'>0 Yorum, {{ i.icerik.1.pub_datetime }}</span>
+                                           </div>
+                                       </article>
+                               </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+            {% include "includes/inc_right.html" %}
+        </div>
+    </div>
+</div>
+
+{% include "includes/inc_footer.html" %}

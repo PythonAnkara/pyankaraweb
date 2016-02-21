@@ -1,0 +1,66 @@
+{% include "includes/inc_banner.html" %}
+<div id="main">
+    <div class="container" style="min-height: 176px;">
+        <div class="row">
+            <div class="content span8 blog-style">
+                <article class="category-showcase">
+                    <div class="inner">
+                        <figure>
+                            <a href="http://www.youtube.com/watch?v={{ firstvideo.videoid }}" rel="prettyPhoto">
+                                <img src="{{ firstvideo.thumbnails.medium }}" alt="{{ firstvideo.title }}">
+                            </a>
+                        </figure>
+                        <div class="text">
+                            <div class="inner-border">
+                                <div class="title"><a href="http://www.youtube.com/watch?v={{ firstvideo.videoid }}" rel="prettyPhoto">{{ firstvideo.title }}</a></div>
+                                <div class="description">
+                                    <div class="date">0 Yorum, {{ firstvideo.pubdate }}, by Python Türkiye</div>
+                                    <div class="excerpt">
+                                        <p>
+                                            {{ firstvideo.description }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% for vs in videos %}
+                                {% if forloop.counter0|divisibleby:2 %}
+                                    <div class="categories">
+                                {% endif %}
+                                    <div class="half">
+                                        <a href="http://www.youtube.com/watch?v={{ vs.videoid }}" rel="prettyPhoto">
+                                            <figure>
+                                                <img src="{{ vs.thumbnails.small }}" alt="">
+                                            </figure>
+                                            <div class="category-text">
+                                                <h4>{{ vs.title }}</h4>
+                                                <div class="date">0 Yorum, {{ vs.pubdate }}, by Python Türkiye</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                            {% if forloop.counter0|divisibleby:2 == False %}
+                                    </div>
+                            {% endif %}
+
+                        {% endfor %}
+                    </div>
+                </article>
+
+                <div class="pagination">
+                    <ul>
+                        <li><a href="#">«</a></li>
+                        <li><a href="#">1</a></li>
+                        <li class="active"><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            {% include "includes/inc_right.html" %}
+        </div>
+    </div>
+</div>
+{% include "includes/inc_footer.html" %}

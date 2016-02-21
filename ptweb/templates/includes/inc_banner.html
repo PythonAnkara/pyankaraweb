@@ -1,0 +1,102 @@
+{% include "includes/inc_head.html" %}
+<header>
+    <div class='container'>
+        <div class='row menu-line'>
+            <div class='span7'>
+                <!--<nav>
+                    <ul>
+                        <li class='active'><a href="/">Home</a></li>
+                        <li><a href="blog.html">Post Layout</a></li>
+                        <li><a href="homepage-blog.html">Pages</a></li>
+                        <li><a href="shortcodes-texts.html">Shortcodes</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>-->
+            </div>
+            <div class='span3 social-links'>
+                <ul>
+                    <li><a href="https://facebook.com/pythonturkiye" class='facebook'>Facebook</a></li>
+                    <li><a href="#" class='twitter'>Twitter</a></li>
+                    <li><a href="#" class='pinterest'>Pinterest</a></li>
+                    <li><a href="#" class='googleplus'>Google+</a></li>
+                </ul>
+            </div>
+            <div class='span2 search-form'>
+                <form action="/arama/" method="get">
+                    <input class='span2' type="text" name="q" placeholder="Ara..." />
+                    <input type="submit" value='Ara' />
+                </form>
+            </div>
+        </div>
+        <div class='row breaking-news'>
+            <div class='span2 title'>
+               <span>Son Haberler</span>
+            </div>
+            <div class='span10 header-news'>
+                <ul id="js-news" class="js-hidden">
+                    {% for hb in b_news %}
+                        <li class="news-item"><a href="/{{ hb.slug }}">{{ hb.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class='row logo-line'>
+            <div class='span3 logo'>
+                <a href="/">
+                    <figure>
+                        <img src="/static/img/python_ankara.png" alt="Python Ankara" />
+                    </figure>
+                </a>
+            </div>
+            <div class='span5 offset4 advertising hidden-phone'>
+                <a href="https://python.org" target="_blank">
+                    <img style="width:456px;height:63px;" class='pull-right' src="/static/img/python-logo.png" alt="" />
+                </a>
+            </div>
+        </div>
+        <div class='row main-nav'>
+            <div class='span12'>
+                <nav>
+                    <ul>
+                        <li class='first-child'>
+                            <div class='inner'>
+                                <a href="/">Ana Sayfa</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class='inner'>
+                                <a href="/blog/">Blog</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class='inner'>
+                                <a href="#">Kategoriler</a>
+                                <div class='dropdown first-level'>
+                                    <ul>
+                                        <li><div class='inner'><a href="/kategori/python/">Python</a></div></li>
+                                        <li>
+                                            <div class='inner'>
+                                                <a href="/kategori/django/">Django</a>
+                                            </div>
+                                        </li>
+                                        <li><div class='inner'><a href="/kategori/pymatlab/">PyMatlab</a></div></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class='inner'>
+                                <a href="/haberler/">Haberler</a>
+                            </div>
+                        </li>
+                        <li><div class='inner'><a href="/videolar/">Videolar</a></div></li>
+                        <li><div class='inner'><a href="/yazarlar/">Yazarlar</a></div></li>
+                        <li><div class='inner'><a href="/etkinlikler/">Etkinlikler</a></div></li>
+                        <li><div class='inner'><a href="https://github.com/PythonAnkara" target="_blank">Projeler</a></div></li>
+                        <li><div class='inner'><a href="/iletisim/">İletişim</a></div></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
